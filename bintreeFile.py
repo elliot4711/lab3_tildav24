@@ -46,27 +46,36 @@ def putta(root, newkey):
                 root.left = Node(newkey)
             
             else:
-                putta(root.right, newkey)
+                putta(root.left, newkey)
         
         return root
 
 
 
-def finns(root, key):
+def finns(root, searched):
     if root == None:
+        #print("1")
         return False
     
-    if key == root.key:
+    #print(root.key)
+    #print(searched)
+    
+    if searched == root.key:
+        #print("2")
         return True
     
-    if key > root.key:
-        return finns(root.right, key)
+    if searched > root.key:
+        #print("3")
+        return finns(root.right, searched)
     
-    if key < root.key:
-        return finns(root.left, key)
+    if searched < root.key:
+        #print("4")
+        return finns(root.left, searched)
    
     else:
         raise ValueError('An error has occured')
+    
+    
 
 
 def skriv(root):
