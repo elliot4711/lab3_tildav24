@@ -4,6 +4,10 @@ class Node:
         self.right = right
         self.key = key
 
+"""
+För att testa Bintree kan man använda enkla siffror och se om dem placeras rätt (större till höger)
+"""
+
 class Bintree:
     def __init__(self):
         self.root = None
