@@ -1,38 +1,83 @@
 class Node:
+    """
+    Node class to keep track of key and pointers
+    """
+
     def __init__(self, key, left = None, right = None):
         self.left = left
         self.right = right
         self.key = key
 
 """
-För att testa Bintree kan man använda enkla siffror och se om dem placeras rätt (större till höger)
+To test Bintree you can use simple numbers and print them in inorder, preorder and postorder and see if it's correct
 """
 
 class Bintree:
-    def __init__(self):
-        self.root = None
-    
-    #def length(self):
-        #return self.size
+    """
+    Bintree class that contains methods for creating and handling the binomial tree data structure
+    """
 
-    #def __len__(self):
-        #return self.size
+    def __init__(self):
+        """
+        Creates Bintree object with root none
+        """
+
+        self.root = None
 
     def __contains__(self,key):
-        # True om key finns i trädet, False annars
+        """
+        Method to check if binomial tree contains certain value
+        Paramters: Key you want to check if it contains
+        Returns: True if key is in tree, False otherwise
+        """
+
         return finns(self.root, key)
     
-    def put(self,newkey):
-        # Sorterar in newkey i trädet
+    def put(self, newkey):
+        """
+        Method to sort new key into tree
+        Paramters: New key to add to tree
+        Returns: New tree root
+        """
+
         self.root = putta(self.root, newkey)
 
     def write(self):
-        # Skriver ut trädet i inorder
+        """
+        Method to write tree contents inorder
+        Parameters: None
+        Returns: None
+        """
+
         skriv(self.root)
         print("\n")
 
+    def writepostorder(self):
+        """
+        Method to write tree contents postorder
+        Parameters: None
+        Returns: None
+        """
+
+        skrivpostorder(self.root)
+        print("\n")
+    
+    def writepreorder(self):
+        """
+        Method to write tree contents preorder
+        Parameters: None
+        Returns: None
+        """
+
+        skrivpreorder(self.root)
+        print("\n")
 
 def putta(root, newkey):
+    """
+    Function that puts new values into tree recursively
+    Parameters: root bintree object, new key to put into tree
+    Returns: New root
+    """
     
     if root == None:
         return Node(newkey)
@@ -54,9 +99,13 @@ def putta(root, newkey):
         
         return root
 
-
-
 def finns(root, searched):
+    """
+    Function that checks if searched value is in tree recursively
+    Parameters: root bintree object, value to search for
+    Returns: True if key exists in tree and False otherwise
+    """
+
     if root == None:
         #print("1")
         return False
@@ -80,10 +129,38 @@ def finns(root, searched):
         raise ValueError('An error has occured')
     
     
-
-
 def skriv(root):
+    """
+    Function to write tree contents inorder
+    Parameters: None
+    Returns: None
+    """
+
     if root is not None:
         skriv(root.left)
         print(root.key)
         skriv(root.right)
+
+def skrivpostorder(root):
+    """
+    Function to write tree contents postorder
+    Parameters: None
+    Returns: None
+    """
+
+    if root is not None:
+        skrivpostorder(root.left)
+        skrivpostorder(root.right)
+        print(root.key)
+
+def skrivpreorder(root):
+    """
+    Function to write tree contents preorder
+    Parameters: None
+    Returns: None
+    """
+
+    if root is not None:
+        print(root.key)
+        skrivpreorder(root.left)
+        skrivpreorder(root.right)
